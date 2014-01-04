@@ -1,3 +1,5 @@
+package src;
+
 /**
  * Contains a number between 1 - 9.
  * <p>

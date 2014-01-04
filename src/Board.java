@@ -1,3 +1,5 @@
+package src;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -21,9 +23,9 @@ public class Board {
         }
 
         // Default board setup.
-        //board[0][2] = new Cell(7);
-        //board[0][5] = new Cell(1);
-        //board[0][6] = new Cell(3);
+        //board[0][2] = new src.Cell(7);
+        //board[0][5] = new src.Cell(1);
+        //board[0][6] = new src.Cell(3);
 
         board[0][0] = new Cell(1);
         board[0][1] = new Cell(0);
@@ -46,38 +48,38 @@ public class Board {
         board[8][1] = new Cell(8);
 
 /*
-        board[1][0] = new Cell(3);
-        board[1][4] = new Cell(5);
-        board[1][6] = new Cell(6);
+        board[1][0] = new src.Cell(3);
+        board[1][4] = new src.Cell(5);
+        board[1][6] = new src.Cell(6);
 
-        board[2][0] = new Cell(5);
-        board[2][2] = new Cell(8);
-        board[2][4] = new Cell(3);
-        board[2][8] = new Cell(4);
+        board[2][0] = new src.Cell(5);
+        board[2][2] = new src.Cell(8);
+        board[2][4] = new src.Cell(3);
+        board[2][8] = new src.Cell(4);
 
-        board[3][1] = new Cell(8);
-        board[3][4] = new Cell(6);
-        board[3][6] = new Cell(9);
+        board[3][1] = new src.Cell(8);
+        board[3][4] = new src.Cell(6);
+        board[3][6] = new src.Cell(9);
 
-        board[4][0] = new Cell(7);
-        board[4][8] = new Cell(6);
+        board[4][0] = new src.Cell(7);
+        board[4][8] = new src.Cell(6);
 
-        board[5][2] = new Cell(4);
-        board[5][4] = new Cell(1);
-        board[5][7] = new Cell(7);
+        board[5][2] = new src.Cell(4);
+        board[5][4] = new src.Cell(1);
+        board[5][7] = new src.Cell(7);
 
-        board[6][0] = new Cell(2);
-        board[6][4] = new Cell(8);
-        board[6][6] = new Cell(4);
-        board[6][8] = new Cell(3);
+        board[6][0] = new src.Cell(2);
+        board[6][4] = new src.Cell(8);
+        board[6][6] = new src.Cell(4);
+        board[6][8] = new src.Cell(3);
 
-        board[7][2] = new Cell(6);
-        board[7][4] = new Cell(7);
-        board[7][8] = new Cell(8);
+        board[7][2] = new src.Cell(6);
+        board[7][4] = new src.Cell(7);
+        board[7][8] = new src.Cell(8);
 
-        board[8][2] = new Cell(5);
-        board[8][3] = new Cell(9);
-        board[8][6] = new Cell(7);
+        board[8][2] = new src.Cell(5);
+        board[8][3] = new src.Cell(9);
+        board[8][6] = new src.Cell(7);
         */
     }
 
@@ -164,18 +166,18 @@ public class Board {
         return numbers.get(0); //Return the first number in the list.
     }
 
-    public void solve() {
-        int attempts = 0;
-        for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[row].length; col++) {
-                int value = board[row][col].getValue();
-
-                if (value == 0) { // empty slot
-
-                }
-            }
-        }
-    }
+//    public void solve() {
+//        int attempts = 0;
+//        for (int row = 0; row < board.length; row++) {
+//            for (int col = 0; col < board[row].length; col++) {
+//                int value = board[row][col].getValue();
+//
+//                if (value == 0) { // empty slot
+//
+//                }
+//            }
+//        }
+//    }
 
     public static void main(String[] args) {
         Board b = new Board();
