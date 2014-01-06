@@ -54,10 +54,8 @@ public class SudokuBoard {
     };
 
     public SudokuBoard() {
-        new GridManager(); // Yes, this actually does stuff. No, I don't need the instance. Leave it alone.
-
         for (int i = 0; i < 9; i++) {
-            GridManager.getLinkedGrid(GridLocation.getGridByIndex(i)).setData(TEMPORARY_GRID[i]);
+            GridManager.getInstance().getLinkedGrid(GridLocation.getGridByIndex(i)).setData(TEMPORARY_GRID[i]);
         }
     }
 
@@ -65,8 +63,10 @@ public class SudokuBoard {
         SudokuBoard board = new SudokuBoard();
 
         board.printBoard();
+        long startTime = System.currentTimeMillis();
         if (board.solve()) {
-            System.out.println("\nSolved!");
+            long endTime = System.currentTimeMillis();
+            System.out.println("\nSolved in " + (endTime - startTime) + " milliseconds");
             board.printBoard();
         } else {
             System.out.println("Not solvable");
@@ -81,7 +81,6 @@ public class SudokuBoard {
 
         for (int i = 1; i < 10; i++) {
             if (currCell.setValue(i)) {
-                //printBoard();
                 if (solve()) {
                     return true;
                 }
@@ -94,7 +93,9 @@ public class SudokuBoard {
     public Cell getNextEmptyCell() {
         for (int i = 0; i < 9; i += 3) {
             for (int j = 0; j < 3; j++) {
-                for (Cell c : GridManager.getLinkedGrid(GridLocation.getGridByIndex(i)).getFullRow(j)) {
+                Cell[] fullRow = GridManager.getInstance().getLinkedGrid(GridLocation.getGridByIndex(i)).getFullRow(j);
+                for (int i1 = 0, fullRowLength = fullRow.length; i1 < fullRowLength; i1++) {
+                    Cell c = fullRow[i1];
                     if ((c.getValue() == 0) && (!c.isFixed())) {
                         return c;
                     }
@@ -108,8 +109,9 @@ public class SudokuBoard {
         for (int currBoard = 0; currBoard < 9; currBoard += 3) {
             for (int currRow = 0; currRow < 3; currRow++) {
                 for (int bOffset = 0; bOffset < 3; bOffset++) {
-                    Cell[] cells = GridManager.getLinkedGrids().get(currBoard + bOffset).getRow(currRow);
-                    for (Cell c : cells) {
+                    Cell[] cells = GridManager.getInstance().getLinkedGrids().get(currBoard + bOffset).getRow(currRow);
+                    for (int i = 0, cellsLength = cells.length; i < cellsLength; i++) {
+                        Cell c = cells[i];
                         System.out.print(c.getValue() + " ");
                     }
                     if (bOffset != 2) {

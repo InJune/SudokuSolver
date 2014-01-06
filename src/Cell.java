@@ -1,7 +1,7 @@
 package src;
 
 /**
- * Cell stuff.
+ * Stores information about specific cells such as value and location.
  * <p/>
  * Created by Synchronised on 05/01/14.
  */
@@ -35,16 +35,10 @@ public class Cell {
     }
 
     public boolean setValue(int value) {
-        if (value == 0) {
-            this.value = 0;
-            return false;
-        }
-        if (isValid(value)) {
-            //System.out.println("Replaced: " + this.value + " with " + value);
+        if (isValid(value) || value == 0) {
             this.value = value;
             return true;
         }
-        //System.out.println(value + " would not be valid in this cell.");
         return false;
     }
 
@@ -54,10 +48,9 @@ public class Cell {
     public boolean isValid(int value) {
         // First check the containing grid if it already contains this value.
         Cell[][] containingGridCells = containingGrid.getCells();
-        for (int row = 0; row < containingGridCells.length; row++) {
-            for (int col = 0; col < containingGridCells[row].length; col++) {
+        for (int row = 0, rlen = containingGridCells.length; row < rlen; row++) {
+            for (int col = 0, clen = containingGridCells[row].length; col < clen; col++) {
                 if (containingGridCells[row][col].value == value) {
-                    //System.out.println("isValid failed because there was already a " + value + " in the grid.");
                     return false;
                 }
             }
@@ -66,12 +59,11 @@ public class Cell {
         // Second, check the row. We do NOT have to check the containing grid because
         // we've already checked all of the cells and none of them are the same.
         for (int links = 0; links < containingGrid.getLinkedRows().length; links++) {
-            LinkedGrid nextGrid = GridManager.getLinkedGrid(containingGrid.getLinkedRows()[links]);
+            LinkedGrid nextGrid = GridManager.getInstance().getLinkedGrid(containingGrid.getLinkedRows()[links]);
 
             Cell[] nextGridCells = nextGrid.getRow(rowLoc);
-            for (int col = 0; col < nextGridCells.length; col++) {
+            for (int col = 0, clen = nextGridCells.length; col < clen; col++) {
                 if (nextGridCells[col].value == value) {
-                    //System.out.println("isValid failed because there was already a " + value + " in the row.");
                     return false;
                 }
             }
@@ -80,12 +72,11 @@ public class Cell {
         // Last, check the column. We do NOT have to check the containing grid because
         // we've already checked all of the cells and none of them are the same.
         for (int links = 0; links < containingGrid.getLinkedColumns().length; links++) {
-            LinkedGrid nextGrid = GridManager.getLinkedGrid(containingGrid.getLinkedColumns()[links]);
+            LinkedGrid nextGrid = GridManager.getInstance().getLinkedGrid(containingGrid.getLinkedColumns()[links]);
 
             Cell[] nextGridCells = nextGrid.getColumn(colLoc);
-            for (int row = 0; row < nextGridCells.length; row++) {
+            for (int row = 0, rlen = nextGridCells.length; row < rlen; row++) {
                 if (nextGridCells[row].value == value) {
-                    //System.out.println("isValid failed because there was already a " + value + " in the column.");
                     return false;
                 }
             }

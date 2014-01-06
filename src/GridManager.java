@@ -3,15 +3,24 @@ package src;
 import java.util.ArrayList;
 
 /**
+ * Singleton made to handle each grid and whatever grid it is linked to.
+ * <p/>
  * Created by Synchronised on 05/01/14.
  */
 public class GridManager {
-    private static final ArrayList<LinkedGrid> LINKED_GRIDS = new ArrayList<>();
+    private static GridManager ourInstance = new GridManager();
+    private ArrayList<LinkedGrid> LINKED_GRIDS;
 
-    public GridManager() {
+    private GridManager() {
+        LINKED_GRIDS = new ArrayList<>();
+
         for (int i = 0; i < 9; i++) {
             LINKED_GRIDS.add(createLinkedGrid(GridLocation.getGridByIndex(i)));
         }
+    }
+
+    public static GridManager getInstance() {
+        return ourInstance;
     }
 
     private LinkedGrid createLinkedGrid(GridLocation gridLocation) {
@@ -83,11 +92,11 @@ public class GridManager {
         return null;
     }
 
-    public static ArrayList<LinkedGrid> getLinkedGrids() {
+    public ArrayList<LinkedGrid> getLinkedGrids() {
         return LINKED_GRIDS;
     }
 
-    public static LinkedGrid getLinkedGrid(GridLocation gridLocation) {
+    public LinkedGrid getLinkedGrid(GridLocation gridLocation) {
         if (LINKED_GRIDS.size() == 0) {
             System.err.println("getLinkedGrid: called before GridManager().");
         }

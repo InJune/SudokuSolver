@@ -1,6 +1,9 @@
 package src;
 
 /**
+ * An easy way to determine what grid is what. Also provides us with a way of getting
+ * an individual grid from the GridManager.
+ * <p/>
  * Created by Synchronised on 05/01/14.
  */
 public enum GridLocation {

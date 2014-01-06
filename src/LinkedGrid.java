@@ -67,7 +67,7 @@ public class LinkedGrid {
         Cell[] fullRow = new Cell[9];
         int offset = 0;
         for (int i : inOrder) {
-            LinkedGrid linkedGrid = GridManager.getLinkedGrid(GridLocation.getGridByIndex(i));
+            LinkedGrid linkedGrid = GridManager.getInstance().getLinkedGrid(GridLocation.getGridByIndex(i));
             for (Cell c : linkedGrid.getRow(row)) {
                 fullRow[offset++] = c;
             }
